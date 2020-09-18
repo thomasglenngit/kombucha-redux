@@ -21,6 +21,28 @@ describe('productListReducer', () => {
     }
   }
 
+  const currentProduct = {
+    1: {
+      name: 'Fantasy Island',
+      brand: 'Heavenly Bootch',
+      flavor: 'Ginger',
+      price: '8.00',
+      pints: '124',
+      id: 1
+    }
+  }
+
+  const editedProduct = {
+    1: {
+      name: 'Road Runner',
+      brand: 'Heavenly Bootch',
+      flavor: 'Cayenne',
+      price: '8.50',
+      pints: '124',
+      id: 1
+    }
+  }
+
 
   let action;
   const productInfo = {
@@ -77,4 +99,31 @@ describe('productListReducer', () => {
     });
   });
 
+  test('Should successfully update the properties of a product', () => {
+    const { name, brand, flavor, price, pints, id } = productInfo;
+    action = { 
+      type: 'UPDATE_PRODUCT',
+      id: 1
+    };
+    expect(productListReducer(currentProduct, action)).toBe({
+      1: {
+        name: 'Fantasy Island',
+        brand: 'Heavenly Bootch',
+        flavor: 'Ginger',
+        price: '8.00',
+        pints: '124',
+        id: 1
+      }
+    })
+    expect(productListReducer(editedProduct, action)).toBe({
+      1: {
+        name: 'Road Runner',
+        brand: 'Heavenly Bootch',
+        flavor: 'Cayenne',
+        price: '8.50',
+        pints: '124',
+        id: 1
+      }
+    });
+  });
 });
