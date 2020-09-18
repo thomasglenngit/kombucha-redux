@@ -3,7 +3,7 @@ import productListReducer from '../../reducers/product-list-reducer';
 describe('productListReducer', () => {
 
   let action;
-  const productData = {
+  const productInfo = {
     name: 'Fantasy Island',
     brand: 'Heavenly Bootch',
     flavor: 'Ginger Balls',
