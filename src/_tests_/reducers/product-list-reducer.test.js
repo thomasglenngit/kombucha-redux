@@ -101,6 +101,7 @@ describe('productListReducer', () => {
 
   test('Should successfully update the properties of a product', () => {
     const { name, brand, flavor, price, pints, id } = productInfo;
+    const { name, brand, flavor, price, pints, id } = editedProduct;
     action = { 
       type: 'UPDATE_PRODUCT',
       id: 1
