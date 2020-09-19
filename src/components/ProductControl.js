@@ -44,6 +44,21 @@ class ProductControl extends React.Component {
     });
   }
 
+  handleClick = () => {
+    if (this.state.selectedProduct != null) {
+      this.setState({
+        selectedProduct: null,
+        editing: false
+      });
+    } else {
+      const { dispatch } = this.props;
+      const action = {
+        type: 'TOGGLE_FORM'
+      }
+      dispatch(action);
+    }
+  }
+
   handleAddingNewProduct = (newProduct) => {
     const { dispatch } = this.props;
     const { name, brand, flavor, price, pints, id} = newProduct;
@@ -57,6 +72,10 @@ class ProductControl extends React.Component {
           id: id
     }
     dispatch(action);
+    const action2 = {
+      type: 'TOGGLE_FORM'
+    }
+    dispatch(action2);
     // this.setState({
     //   currentPage: 'index',
     // });
@@ -113,30 +132,30 @@ class ProductControl extends React.Component {
 
   render() {
     let pageToDisplay = null;
-    if (this.state.currentPage === 'index') {
+    if (this.props.currentPage === 'index') {
       pageToDisplay = <ProductList
-        productList = {this.state.masterList} 
+        productList = {this.props.masterList} 
         onLinkClick = {this.handleLinks}
         onSellClick = {this.handleSellPint} //to sell pints
         onProductClick = {this.handleViewingDetails} />
-    } else if (this.state.currentPage === 'create') {
+    } else if (this.props.currentPage === 'create') {
       pageToDisplay = <AddProduct 
         onLinkClick = {this.handleLinks}
         onAddingProduct = {this.handleAddingNewProduct} />
-    } else if (this.state.currentPage === 'details') {
+    } else if (this.props.currentPage === 'details') {
       pageToDisplay = <ProductDetails
-        product = {this.state.currentProduct}
+        product = {this.props.currentProduct}
         onLinkClick = {this.handleLinks} 
         onDeleteClick ={this.handleDeleteProduct}
         onEditClick = {this.handleClickingEdit} />
-    } else if (this.state.currentPage === 'edit') {
+    } else if (this.props.currentPage === 'edit') {
       pageToDisplay = <EditProduct
-        product = {this.state.currentProduct}
+        product = {this.props.currentProduct}
         onLinkClick = {this.handleLinks}
         onEditProduct = {this.handleEditProduct}/>
-    } else if (this.state.currentPage === 'edit') {
+    } else if (this.props.currentPage === 'edit') {
       pageToDisplay = <EditProduct
-        product = {this.state.currentProduct}
+        product = {this.props.currentProduct}
         onLinkClick = {this.handleLinks}
         onEditProduct = {this.handleEditProduct}/>
     }
