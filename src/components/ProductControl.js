@@ -10,7 +10,7 @@ class ProductControl extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      currentPage: 'index',
+      // currentPage: 'index',
       currentProduct: null,
       pints: 1,
       show: true,
@@ -57,9 +57,9 @@ class ProductControl extends React.Component {
           id: id
     }
     dispatch(action);
-    this.setState({
-      currentPage: 'index',
-    });
+    // this.setState({
+    //   currentPage: 'index',
+    // });
   }
 
   handleClickingEdit = (id) => {
@@ -154,7 +154,8 @@ ProductControl.propTypes = {
 
 const mapStateToProps = state => {
   return { 
-    masterList: state
+    masterList: state.masterList,
+    currentPage: state.currentPage
   }
 }
 

@@ -22,7 +22,7 @@ describe("rootReducer", () => {
     expect(store.getState().currentPage).toEqual(currentPageReducer(undefined, { type: null}));
   });
 
-  test('Check that initial state of productListReducder matches root reducer', () => {
+  test('Check that initial state of productListReducer matches root reducer', () => {
     const action = {
       type: 'ADD_PRODUCT',
       name: 'Green Goddess',
