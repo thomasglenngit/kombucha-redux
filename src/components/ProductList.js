@@ -30,7 +30,7 @@ function ProductList(props) {
 }
 
 ProductList.propTypes = {
-  productList: PropTypes.array,
+  productList: PropTypes.object,
   onLinkClick: PropTypes.func,
   onProductClick: PropTypes.func
 }
