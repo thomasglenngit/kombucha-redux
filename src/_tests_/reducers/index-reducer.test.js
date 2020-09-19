@@ -21,4 +21,26 @@ describe("rootReducer", () => {
   test('Check that initial state of currentPage matches root reducer', () => {
     expect(store.getState().currentPage).toEqual(currentPageReducer(undefined, { type: null}));
   });
+
+  test('Check that initial state of productListReducder matches root reducer', () => {
+    const action = {
+      type: 'ADD_PRODUCT',
+      name: 'Green Goddess',
+      brand: 'Eternal Sunshine',
+      flavor: 'Pine Needle',
+      price: '8.50',
+      pints: '124',
+      id: 1
+    }
+    store.dispatch(action);
+    expect(store.getState().masterList).toEqual(productListReducer(undefined, action));
+  });
+
+  test('Check that inital state of currentPage matches root reducer', () => {
+    const action = {
+      type: 'TOGGLE_FORM'
+    }
+    store.dispatch(action);
+    expect(store.getState().currentPage).toEqual(currentPageReducer(undefined, action));
+  });
 });
