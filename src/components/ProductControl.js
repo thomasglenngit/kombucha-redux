@@ -3,12 +3,12 @@ import ProductList from './ProductList';
 import AddProduct from './AddProduct';
 import EditProduct from './EditProduct';
 import ProductDetails from './ProductDetails';
+import { connect } from 'react-redux';
 
 class ProductControl extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      masterList: [],
       currentPage: 'index',
       currentProduct: null,
       pints: 1,
@@ -44,9 +44,19 @@ class ProductControl extends React.Component {
   }
 
   handleAddingNewProduct = (newProduct) => {
-    const newMasterList = this.state.masterList.concat(newProduct);
+    const { dispatch } = this.props;
+    const { name, brand, flavor, price, pints, id} = newProduct;
+    const action = {
+      type:'ADD_PRODUCT',
+      name: name,
+          brand: brand,
+          flavor: flavor,
+          price: price,
+          pints: pints,
+          id: id
+    }
+    dispatch(action);
     this.setState({
-      masterList: newMasterList,
       currentPage: 'index',
     });
   }
@@ -127,5 +137,7 @@ class ProductControl extends React.Component {
     )
   }
 }
+
+ProductControl = connect()(ProductControl);
 
 export default ProductControl;

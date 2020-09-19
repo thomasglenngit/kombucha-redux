@@ -46,7 +46,7 @@ describe('productListReducer', () => {
   }
 
   const editedProduct = {
-    editedProduct: currentProduct,
+    // editedProduct: currentProduct,
     1: {
       name: 'Fantasy Island',
       brand: 'Heavenly Bootch',
@@ -108,16 +108,16 @@ describe('productListReducer', () => {
       type: 'EDIT_PRODUCT',
       id: 1
     };
-    // expect(productListReducer(currentProduct, action)).toEqual({
-    //   1: {
-    //     name: 'Fantasy Island',
-    //     brand: 'Heavenly Bootch',
-    //     flavor: 'Ginger',
-    //     price: '8.00',
-    //     pints: '124',
-    //     id: 1
-    //   }
-    // })
+    expect(productListReducer(currentProduct, action)).toEqual({
+      1: {
+        name: 'Fantasy Island',
+        brand: 'Heavenly Bootch',
+        flavor: 'Ginger',
+        price: '8.00',
+        pints: '124',
+        id: 1
+      }
+    })
     expect(productListReducer(editedProduct, action)).toEqual({
       1: {
         name: 'Fantasy Island',
