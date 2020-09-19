@@ -70,24 +70,33 @@ class ProductControl extends React.Component {
   }
 
   handleEditProduct = (editedProduct) => {
-    const newMasterList = this.state.masterList.map(products => {
-      if (editedProduct.id === products.id) {
-        return editedProduct;
-      } else {
-        return products;
-      }
-    });
+   const { dispatch } = this.props;
+   const { name, brand, flavor, price, pints, id } = editedProduct;
+   const action = {
+     type: 'ADD_PRODUCT',
+     name: name,
+     brand: brand,
+     flavor: flavor,
+     price: price, 
+     pints: pints,
+     id: id
+   }
+   dispatch(action);
     this.setState({
-      masterList: newMasterList,
+      editing: false,
       currentPage: 'details',
       currentProduct: editedProduct
     }); 
   }
 
   handleDeleteProduct = (id) => {
-    const newMasterList = this.state.masterList.filter(products => products.id !== id);
+    const { dispatch } = this.props;
+    const action = {
+      type: 'DELETE_PRODUCT',
+      id: id
+    }
+    dispatch(action);
     this.setState({
-      masterList: newMasterList,
       currentPage: 'index',
       currentProduct: null
     });
