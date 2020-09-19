@@ -149,12 +149,12 @@ class ProductControl extends React.Component {
 }
 
 ProductControl.propTypes = {
-  masterProductList: PropTypes.object
+  masterList: PropTypes.object
 };
 
 const mapStateToProps = state => {
   return { 
-    masterProductList: state
+    masterList: state
   }
 }
 
