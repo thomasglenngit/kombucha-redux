@@ -4,6 +4,7 @@ import AddProduct from './AddProduct';
 import EditProduct from './EditProduct';
 import ProductDetails from './ProductDetails';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 class ProductControl extends React.Component {
   constructor(props) {
@@ -20,8 +21,8 @@ class ProductControl extends React.Component {
   }
  
   handleSellPint = (id) => {
-    const newMasterList = this.state.masterList.filter(products => products.id === id)[0];
-    let productToSell = this.state.pints;
+    const newMasterList = this.props.masterList[id];
+    let productToSell = this.props.pints;
     if( productToSell !== 0 ) {
       this.setState({ 
         masterList: newMasterList,
@@ -62,7 +63,7 @@ class ProductControl extends React.Component {
   }
 
   handleClickingEdit = (id) => {
-    const productToEdit = this.state.masterList.filter(products => products.id === id)[0];
+    const productToEdit = this.props.masterList[id];
     this.setState({
       currentPage: 'edit',
       currentProduct: productToEdit
@@ -103,7 +104,7 @@ class ProductControl extends React.Component {
   }
 
   handleViewingDetails = (id) => {
-    const productToView = this.state.masterList.filter(products => products.id === id)[0];
+    const productToView = this.props.masterList[id],
     this.setState({
       currentPage: 'details',
       currentProduct: productToView
@@ -147,6 +148,16 @@ class ProductControl extends React.Component {
   }
 }
 
-ProductControl = connect()(ProductControl);
+ProductControl.propTypes = {
+  masterProductList: PropTypes.object
+};
+
+const mapStateToProps = state => {
+  return { 
+    masterProductList: state
+  }
+}
+
+ProductControl = connect(mapStateToProps)(ProductControl);
 
 export default ProductControl;
