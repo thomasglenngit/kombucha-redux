@@ -20,6 +20,19 @@ describe('productListReducer', () => {
       id: 2
     }
   }
+  
+  
+
+
+  let action;
+  const productInfo = {
+    name: 'Fantasy Island',
+    brand: 'Heavenly Bootch',
+    flavor: 'Ginger',
+    price: '8.00',
+    pints: '124',
+    id: 1
+  }
 
   const currentProduct = {
     1: {
@@ -33,25 +46,16 @@ describe('productListReducer', () => {
   }
 
   const editedProduct = {
+    editedProduct: currentProduct,
     1: {
-      name: 'Road Runner',
+      name: 'Fantasy Island',
       brand: 'Heavenly Bootch',
-      flavor: 'Cayenne',
+      flavor: 'Ginger',
       price: '8.50',
       pints: '124',
       id: 1
     }
-  }
-
-
-  let action;
-  const productInfo = {
-    name: 'Fantasy Island',
-    brand: 'Heavenly Bootch',
-    flavor: 'Ginger',
-    price: '8.00',
-    pints: '124',
-    id: 1
+    
   }
 
   test('Should successfully add new product information to the masterList', () => {
@@ -100,27 +104,25 @@ describe('productListReducer', () => {
   });
 
   test('Should successfully update the properties of a product', () => {
-    const { name, brand, flavor, price, pints, id } = productInfo;
-    const { name, brand, flavor, price, pints, id } = editedProduct;
     action = { 
-      type: 'UPDATE_PRODUCT',
+      type: 'EDIT_PRODUCT',
       id: 1
     };
-    expect(productListReducer(currentProduct, action)).toBe({
+    // expect(productListReducer(currentProduct, action)).toEqual({
+    //   1: {
+    //     name: 'Fantasy Island',
+    //     brand: 'Heavenly Bootch',
+    //     flavor: 'Ginger',
+    //     price: '8.00',
+    //     pints: '124',
+    //     id: 1
+    //   }
+    // })
+    expect(productListReducer(editedProduct, action)).toEqual({
       1: {
         name: 'Fantasy Island',
         brand: 'Heavenly Bootch',
         flavor: 'Ginger',
-        price: '8.00',
-        pints: '124',
-        id: 1
-      }
-    })
-    expect(productListReducer(editedProduct, action)).toBe({
-      1: {
-        name: 'Road Runner',
-        brand: 'Heavenly Bootch',
-        flavor: 'Cayenne',
         price: '8.50',
         pints: '124',
         id: 1
