@@ -1,4 +1,5 @@
 import currentPageReducer from '../../reducers/current-page-reducer';
+import * as c from '../../actions/ActionTypes';
 
 describe("currentPageReducer", () => {
 
@@ -7,6 +8,6 @@ describe("currentPageReducer", () => {
   });
 
   test('Should toggle currentPage state between true and false', () => {
-    expect(currentPageReducer(false, { type: 'TOGGLE_FORM' })).toEqual(true);
+    expect(currentPageReducer(false, { type: c.TOGGLE_FORM })).toEqual(true);
   });
 });

@@ -2,6 +2,7 @@ import rootReducer from '../../reducers/index';
 import { createStore } from 'redux';
 import currentPageReducer from '../../reducers/current-page-reducer';
 import productListReducer from '../../reducers/product-list-reducer';
+import * as c from '../../actions/ActionTypes';
 
 let store = createStore(rootReducer);
 
@@ -24,7 +25,7 @@ describe("rootReducer", () => {
 
   test('Check that initial state of productListReducer matches root reducer', () => {
     const action = {
-      type: 'ADD_PRODUCT',
+      type: c.ADD_PRODUCT,
       name: 'Green Goddess',
       brand: 'Eternal Sunshine',
       flavor: 'Pine Needle',
@@ -38,7 +39,7 @@ describe("rootReducer", () => {
 
   test('Check that inital state of currentPage matches root reducer', () => {
     const action = {
-      type: 'TOGGLE_FORM'
+      type: c.TOGGLE_FORM
     }
     store.dispatch(action);
     expect(store.getState().currentPage).toEqual(currentPageReducer(undefined, action));
