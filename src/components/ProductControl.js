@@ -5,6 +5,8 @@ import EditProduct from './EditProduct';
 import ProductDetails from './ProductDetails';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import * as a from './../actions';
+
 
 class ProductControl extends React.Component {
   constructor(props) {
@@ -52,29 +54,17 @@ class ProductControl extends React.Component {
       });
     } else {
       const { dispatch } = this.props;
-      const action = {
-        type: 'TOGGLE_FORM'
-      }
+      const action = a.toggleForm();
       dispatch(action);
     }
   }
 
   handleAddingNewProduct = (newProduct) => {
     const { dispatch } = this.props;
-    const { name, brand, flavor, price, pints, id} = newProduct;
-    const action = {
-      type:'ADD_PRODUCT',
-      name: name,
-          brand: brand,
-          flavor: flavor,
-          price: price,
-          pints: pints,
-          id: id
-    }
+    // const { name, brand, flavor, price, pints, id} = newProduct;
+    const action = a.addProduct(newProduct);
     dispatch(action);
-    const action2 = {
-      type: 'TOGGLE_FORM'
-    }
+    const action2 = a.toggleForm();
     dispatch(action2);
     // this.setState({
     //   currentPage: 'index',
@@ -91,16 +81,8 @@ class ProductControl extends React.Component {
 
   handleEditProduct = (editedProduct) => {
    const { dispatch } = this.props;
-   const { name, brand, flavor, price, pints, id } = editedProduct;
-   const action = {
-     type: 'ADD_PRODUCT',
-     name: name,
-     brand: brand,
-     flavor: flavor,
-     price: price, 
-     pints: pints,
-     id: id
-   }
+  //  const { name, brand, flavor, price, pints, id } = editedProduct;
+   const action = a.addProduct(editedProduct);
    dispatch(action);
     this.setState({
       editing: false,
@@ -111,10 +93,7 @@ class ProductControl extends React.Component {
 
   handleDeleteProduct = (id) => {
     const { dispatch } = this.props;
-    const action = {
-      type: 'DELETE_PRODUCT',
-      id: id
-    }
+    const action = a.deleteProduct(id);
     dispatch(action);
     this.setState({
       currentPage: 'index',

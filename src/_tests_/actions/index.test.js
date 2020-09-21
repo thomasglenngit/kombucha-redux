@@ -12,4 +12,15 @@ describe('kombucha actions', () => {
       type: 'TOGGLE_FORM'
     });
   });
+  it('addProduct should creat ADD_PRODUCT action', () => {
+    expect(actions.addProduct({name: 'Hello Tummy', brand: 'Moby Scobie', flavor: 'Juniper Berry', price: '9.00', pints: 124, id: 1})).toEqual({
+      type: 'ADD_PRODUCT', 
+      name: 'Hello Tummy',
+      brand: 'Moby Scobie',
+      flavor: 'Juniper Berry',
+      price: '9.00',
+      pints: 124,
+      id: 1
+    });
+  });
 });
